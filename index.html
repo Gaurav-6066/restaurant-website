@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delish Bites Restaurant</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1e1e2f, #2c2c54);
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* NAVBAR */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 10%;
+    position: fixed;
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+}
+
+nav h1 {
+    color: #ff9f43;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+nav ul li:hover {
+    color: #ff9f43;
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero h2 {
+    font-size: 3rem;
+    background: linear-gradient(90deg, #ff9f43, #ff6b6b);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    margin: 20px 0;
+    opacity: 0.8;
+}
+
+.btn {
+    padding: 12px 30px;
+    background: linear-gradient(45deg, #ff9f43, #ff6b6b);
+    border: none;
+    border-radius: 30px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+}
+
+/* SECTION */
+.section {
+    padding: 80px 10%;
+}
+
+/* MENU CARDS */
+.menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    gap: 20px;
+}
+
+.card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 20px;
+    transition: 0.4s;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.card h3 {
+    margin: 10px 0;
+}
+
+/* ABOUT */
+.about {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+}
+
+.about img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 20px;
+}
+
+/* CONTACT */
+.contact input, .contact textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: none;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    opacity: 0.6;
+}
+
+/* ANIMATION */
+.fade {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 1s;
+}
+
+.fade.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <h1>Delish Bites</h1>
+    <ul>
+        <li onclick="scrollToSection('home')">Home</li>
+        <li onclick="scrollToSection('menu')">Menu</li>
+        <li onclick="scrollToSection('about')">About</li>
+        <li onclick="scrollToSection('contact')">Contact</li>
+    </ul>
+</nav>
+
+<section class="hero" id="home">
+    <div>
+        <h2>Welcome to Delish Bites</h2>
+        <p>Experience the taste of luxury & delicious food</p>
+        <button class="btn" onclick="scrollToSection('menu')">Explore Menu</button>
+    </div>
+</section>
+
+<section class="section fade" id="menu">
+    <h2>Our Menu</h2>
+    <div class="menu">
+        <div class="card">
+            <img src="https://source.unsplash.com/400x300/?pizza">
+            <h3>Pizza</h3>
+            <p>Cheesy and delicious</p>
+        </div>
+        <div class="card">
+            <img src="https://source.unsplash.com/400x300/?burger">
+            <h3>Burger</h3>
+            <p>Juicy grilled perfection</p>
+        </div>
+        <div class="card">
+            <img src="https://source.unsplash.com/400x300/?pasta">
+            <h3>Pasta</h3>
+            <p>Italian classic delight</p>
+        </div>
+    </div>
+</section>
+
+<section class="section about fade" id="about">
+    <img src="https://source.unsplash.com/400x300/?restaurant">
+    <div>
+        <h2>About Us</h2>
+        <p>We serve high-quality dishes made with fresh ingredients. Our chefs craft every meal with passion.</p>
+    </div>
+</section>
+
+<section class="section contact fade" id="contact">
+    <h2>Contact Us</h2>
+    <input type="text" placeholder="Your Name">
+    <input type="email" placeholder="Your Email">
+    <textarea rows="4" placeholder="Your Message"></textarea>
+    <button class="btn">Send Message</button>
+</section>
+
+<footer>
+    <p>© 2026 Delish Bites Restaurant</p>
+</footer>
+
+<script>
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+// fade-in animation on scroll
+const fades = document.querySelectorAll('.fade');
+
+window.addEventListener('scroll', () => {
+    fades.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < window.innerHeight - 100) {
+            el.classList.add('show');
+        }
+    });
+});
+</script>
+
+</body>
+</html>
